@@ -25,6 +25,7 @@ public class BairroService {
     }
 
     public String apagaId(Integer id) {
+        bairroRepository.deleteById(id);
         return "Bairro com id " + id + " apagado com sucesso!";
     }
 

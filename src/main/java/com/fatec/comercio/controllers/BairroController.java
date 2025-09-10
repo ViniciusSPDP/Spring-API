@@ -26,7 +26,7 @@ public class BairroController {
     public BairroController(BairroService bairroService) {
         this.bairroService = bairroService;
     }
-
+    
     @GetMapping("")
     public List<Bairro> getBairros() {
         return bairroService.allBairros();
