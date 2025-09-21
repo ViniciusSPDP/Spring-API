@@ -37,4 +37,8 @@ public class BairroService {
         bairro.setCodbairro(id);
         bairroRepository.save(bairro);
     }
+
+    public Bairro findBairroById(Integer id) {
+        return bairroRepository.findById(id).orElse(null);
+    }
 }

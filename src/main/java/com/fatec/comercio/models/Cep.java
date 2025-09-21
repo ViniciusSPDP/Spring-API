@@ -43,6 +43,4 @@ public class Cep {
         this.numerocep = numerocep;
     }
 
-    
-
 }

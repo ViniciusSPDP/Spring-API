@@ -14,8 +14,6 @@ import com.fatec.comercio.models.Bairro;
 import com.fatec.comercio.service.BairroService;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
 @RestController
 @RequestMapping("/bairros")
 public class BairroController {
@@ -26,7 +24,7 @@ public class BairroController {
     public BairroController(BairroService bairroService) {
         this.bairroService = bairroService;
     }
-    
+
     @GetMapping("")
     public List<Bairro> getBairros() {
         return bairroService.allBairros();
@@ -49,5 +47,12 @@ public class BairroController {
         bairroService.editarBairro(id, bairro);
         return "Bairro com id " + id + " editado com sucesso!";
     }
-    
+
+    // Adicione este método ao seu BairroController.java
+    @GetMapping("/{id}")
+    public Bairro getBairroById(@PathVariable Integer id) {
+        // Você precisará criar este método 'findBairroById' no seu BairroService
+        return bairroService.findBairroById(id);
+    }
+
 }

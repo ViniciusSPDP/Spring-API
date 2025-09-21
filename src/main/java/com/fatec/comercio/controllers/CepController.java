@@ -47,4 +47,8 @@ public class CepController {
         return "Cep com id " + id + " editado com sucesso!";
     }
 
+    @GetMapping("/{id}")
+    public Cep getCepById(@PathVariable Integer id) {
+        return cepService.buscaId(id);
+    }
 }

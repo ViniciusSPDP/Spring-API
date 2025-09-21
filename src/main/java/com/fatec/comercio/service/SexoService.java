@@ -33,16 +33,17 @@ public class SexoService {
     }
 
     public Sexo salvarSexo(Sexo sexo) {
-
         return sexoRepository.save(sexo);
-
     }
 
 //editar sexo
     public void editarSexo(Integer id, Sexo sexo) {
         sexo.setCodsexo(id);
         sexoRepository.save(sexo);
+    }
 
+    public Sexo findSexoById(Integer id) {
+        return sexoRepository.findById(id).orElse(null);
     }
 
 }

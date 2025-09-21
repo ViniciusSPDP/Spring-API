@@ -38,4 +38,8 @@ public class CepService {
         cepRepository.save(cep);
     }
 
+    public Cep buscaId(Integer id) {
+        return cepRepository.findByCodcep(id);
+    }
+
 }

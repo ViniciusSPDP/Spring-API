@@ -45,5 +45,10 @@ public class SexoController {
         sexoService.editarSexo(id, sexo);
         return "Sexo com id " + id + " editado com sucesso!";
     }
+
+    @GetMapping("/{id}")
+    public Sexo getSexoById(@PathVariable Integer id) {
+        return sexoService.findSexoById(id);
+    }
     
 }
