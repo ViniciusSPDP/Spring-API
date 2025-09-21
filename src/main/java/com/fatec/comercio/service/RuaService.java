@@ -38,6 +38,5 @@ public class RuaService {
         ruaRepository.save(rua);
     }
 
-
     
 }

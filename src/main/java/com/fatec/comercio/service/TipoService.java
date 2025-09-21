@@ -39,5 +39,9 @@ public class TipoService {
         tipo.setCodtipo(id);
         tipoRepository.save(tipo);
     }
-    
+
+    public Tipo buscaId(Integer id) {
+        return tipoRepository.findById(id).orElse(null);
+    }
+
 }

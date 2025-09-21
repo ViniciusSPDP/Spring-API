@@ -48,5 +48,9 @@ public class RuaController {
         return "Rua com id " + id + " editada com sucesso!";
     }
 
+    @GetMapping("/{id}")
+    public Rua getRuaById(@PathVariable Integer id) {
+        return ruaService.ruaId(id);
+    }
 
 }

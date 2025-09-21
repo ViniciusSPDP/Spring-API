@@ -47,5 +47,9 @@ public class TipoController {
         return "Tipo com id " + id + " editado com sucesso!";
     }
 
+    @GetMapping("/{id}")
+    public Tipo getTipoById(@PathVariable Integer id) {
+        return tipoService.buscaId(id);
+    }
     
 }

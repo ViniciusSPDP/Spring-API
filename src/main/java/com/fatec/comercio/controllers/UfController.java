@@ -47,4 +47,8 @@ public class UfController {
         return "Sexo com id " + id + " editado com sucesso!";
     }
     
+    @GetMapping("/{id}")
+    public Uf getUfId(@PathVariable Integer id) {
+        return ufService.ufId(id);
+    }
 }

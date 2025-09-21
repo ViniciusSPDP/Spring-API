@@ -47,4 +47,8 @@ public class MarcaController {
         return "Marca com id " + id + " editada com sucesso!";
     }
     
+    @GetMapping("/{id}")
+    public Marca getMarcaById(@PathVariable Integer id) {
+        return marcaService.marcaId(id);
+    }
 }
