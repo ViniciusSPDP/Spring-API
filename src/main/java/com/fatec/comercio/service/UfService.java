@@ -31,17 +31,14 @@ public class UfService {
         ufRepository.deleteById(id);
     }
 
-    //Salvar UF
-    public String salvarUf(Uf uf) {
-        ufRepository.save(uf);
-        return "UF " + uf.getNomeuf() + " salva com sucesso!";
+    //Salvar UF (CORRIGIDO)
+    public Uf salvarUf(Uf uf) {
+        return ufRepository.save(uf);
     }
 
-    //Buscar UF
+    //Editar UF
     public void editarUf(Integer id, Uf uf) {
         uf.setCoduf(id);
         ufRepository.save(uf);
     }   
-
-    
 }
