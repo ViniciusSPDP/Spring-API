@@ -14,8 +14,6 @@ public class VendaProdutoKey {
     @Column(name = "codprodutofk")
     private Integer codproduto;
 
-    // Construtores, getters, setters, hashCode e equals
-
     public VendaProdutoKey() {}
 
     public VendaProdutoKey(Integer codvenda, Integer codproduto) {

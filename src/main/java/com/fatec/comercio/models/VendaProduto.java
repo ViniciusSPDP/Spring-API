@@ -25,10 +25,9 @@ public class VendaProduto {
     @JoinColumn(name = "codprodutofk")
     private Produto produto;
 
-    private Integer quantv; // quantidade vendida
-    private Double valorv; // valor do produto na venda
+    private Integer quantv;
+    private Double valorv; 
 
-    // Getters e Setters
 
     public VendaProdutoKey getId() {
         return id;

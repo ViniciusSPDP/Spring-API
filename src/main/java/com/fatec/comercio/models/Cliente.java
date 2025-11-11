@@ -1,6 +1,6 @@
 package com.fatec.comercio.models;
 
-import java.util.Date; // <-- Verifique se a importação é java.util.Date
+import java.util.Date; 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -15,7 +15,7 @@ public class Cliente {
     private String nomecliente;
     private String cpf;
     
-    @Temporal(TemporalType.DATE) // <-- Anotação importante para mapear a data
+    @Temporal(TemporalType.DATE) 
     private Date datanasc;
 
     private String numerocasa;
@@ -40,7 +40,6 @@ public class Cliente {
     @JoinColumn(name = "codcep")
     private Cep cep;
 
-    // Getters e Setters (verifique se todos estão presentes)
 
     public Integer getCodcliente() { return codcliente; }
     public void setCodcliente(Integer codcliente) { this.codcliente = codcliente; }
@@ -61,7 +60,6 @@ public class Cliente {
     public Cep getCep() { return cep; }
     public void setCep(Cep cep) { this.cep = cep; }
 
-    // --- GETTER E SETTER CORRIGIDOS/ADICIONADOS ---
     public Date getDatanasc() {
         return datanasc;
     }

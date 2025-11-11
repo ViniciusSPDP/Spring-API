@@ -1,5 +1,6 @@
 package com.fatec.comercio.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -8,9 +9,13 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fatec.comercio.dto.VendaForm;
+import com.fatec.comercio.exception.ResourceNotFoundException;
+import com.fatec.comercio.models.Cliente;
 import com.fatec.comercio.models.Produto;
 import com.fatec.comercio.models.Venda;
 import com.fatec.comercio.models.VendaProduto;
+import com.fatec.comercio.repository.ClienteRepository;
 import com.fatec.comercio.repository.ProdutoRepository;
 import com.fatec.comercio.repository.VendaRepository;
 import jakarta.transaction.Transactional;
@@ -22,7 +27,10 @@ public class VendaService {
     private VendaRepository vendaRepository;
 
     @Autowired
-    private ProdutoRepository produtoRepository; // Precisamos do repositório de produto
+    private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     public List<Venda> findAll() {
         return vendaRepository.findAll();
@@ -33,32 +41,51 @@ public class VendaService {
     }
 
     @Transactional
-    public Venda save(Venda venda) {
-        // Garante que a relação bidirecional seja estabelecida
-        venda.getProdutos().forEach(item -> item.setVenda(venda));
+    public Venda save(VendaForm vendaForm) {
 
-        // ----- INÍCIO DA CORREÇÃO -----
-        // Para cada item da venda, substituímos o produto "detached" por um "managed"
-        Set<VendaProduto> managedItems = venda.getProdutos().stream()
-            .map(item -> {
-                Produto detachedProduto = item.getProduto();
-                // Busca a versão mais recente do produto no banco de dados
-                Produto managedProduto = produtoRepository.findById(detachedProduto.getCodproduto())
-                    .orElseThrow(() -> new RuntimeException("Produto com ID " + detachedProduto.getCodproduto() + " não encontrado."));
-                
-                // Atualiza o item da venda para usar a entidade gerenciada
-                item.setProduto(managedProduto);
-                return item;
-            })
-            .collect(Collectors.toSet());
+        Cliente cliente = clienteRepository.findById(vendaForm.getClienteId())
+            .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado com ID: " + vendaForm.getClienteId()));
         
-        venda.setProdutos(managedItems);
-        // ----- FIM DA CORREÇÃO -----
+        Venda venda = new Venda();
+        venda.setCliente(cliente);
+        venda.setDatavenda(new Date());
 
+        Set<VendaProduto> itensDaVenda = vendaForm.getProdutos().stream().map(itemForm -> {
+            Produto produto = produtoRepository.findById(itemForm.getProdutoId())
+                .orElseThrow(() -> new ResourceNotFoundException("Produto não encontrado com ID: " + itemForm.getProdutoId()));
+
+            if (produto.getQuantidade() < itemForm.getQuantidadev()) {
+                throw new IllegalArgumentException("Quantidade insuficiente em estoque para o produto ID: " + produto.getNomeproduto());
+            }
+
+            produto.setQuantidade(produto.getQuantidade() - itemForm.getQuantidadev());
+            produtoRepository.save(produto);
+
+            VendaProduto item = new VendaProduto();
+            item.setVenda(venda);
+            item.setProduto(produto);
+            item.setQuantv(itemForm.getQuantidadev());
+            item.setValorv(itemForm.getValorv());
+
+            return item;
+        })
+        .collect(Collectors.toSet());
+        venda.setProdutos(itensDaVenda);
         return vendaRepository.save(venda);
     }
 
+    @Transactional
     public void deleteById(Integer id) {
-        vendaRepository.deleteById(id);
+        Venda venda = vendaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Venda não encontrada com ID: " + id));
+
+        venda.getProdutos().forEach(vp -> {
+            Produto produto = vp.getProduto();
+            produto.setQuantidade(produto.getQuantidade() + vp.getQuantv());
+            produtoRepository.save(produto);
+        });
+
+        vendaRepository.delete(venda);
+
     }
 }

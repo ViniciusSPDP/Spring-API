@@ -1,6 +1,6 @@
 package com.fatec.comercio.models;
 
-import java.util.Date; // <-- Verifique se a importação é java.util.Date
+import java.util.Date;
 import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -13,8 +13,8 @@ public class Venda {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer codvenda;
 
-    @Temporal(TemporalType.DATE) // <-- Anotação importante para mapear a data
-    private Date datavenda; // <-- Verifique se o tipo é java.util.Date
+    @Temporal(TemporalType.DATE)
+    private Date datavenda; 
 
     @ManyToOne
     @JoinColumn(name = "codclientefk")
@@ -23,7 +23,6 @@ public class Venda {
     @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
     private Set<VendaProduto> produtos;
 
-    // Getters e Setters
 
     public Integer getCodvenda() { return codvenda; }
     public void setCodvenda(Integer codvenda) { this.codvenda = codvenda; }
@@ -32,7 +31,6 @@ public class Venda {
     public Set<VendaProduto> getProdutos() { return produtos; }
     public void setProdutos(Set<VendaProduto> produtos) { this.produtos = produtos; }
     
-    // --- GETTER E SETTER CORRIGIDOS ---
     public Date getDatavenda() {
         return datavenda;
     }

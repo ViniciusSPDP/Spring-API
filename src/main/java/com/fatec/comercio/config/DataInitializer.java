@@ -2,11 +2,19 @@ package com.fatec.comercio.config;
 
 import com.fatec.comercio.models.*;
 import com.fatec.comercio.service.*;
+// --- NOVAS IMPORTAÇÕES NECESSÁRIAS ---
+import com.fatec.comercio.dto.VendaForm;
+import com.fatec.comercio.dto.VendaProdutoForm;
+import java.util.ArrayList;
+import java.util.List;
+// --- FIM DAS NOVAS IMPORTAÇÕES ---
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+// Set e HashSet não são mais necessários para a Venda
+// import java.util.HashSet;
+// import java.util.Set;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -82,7 +90,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Produto produtoEx = new Produto();
         produtoEx.setNomeproduto("Smartphone Exemplo");
-        produtoEx.setQuantidade(50);
+        produtoEx.setQuantidade(50); // <-- Inicia com 50 no estoque
         produtoEx.setValor(1250.99);
         produtoEx.setMarca(savedMarca);
         produtoEx.setTipo(savedTipo);
@@ -102,28 +110,27 @@ public class DataInitializer implements CommandLineRunner {
         clienteEx.setCep(savedCep);
         Cliente savedCliente = clienteService.save(clienteEx);
 
-        // --- Nível 4: Entidades que dependem dos níveis anteriores ---
+        // --- NÍVEL 4: ATUALIZADO PARA USAR DTOS ---
 
-        Venda vendaEx = new Venda();
-        vendaEx.setDatavenda(new Date()); // Data atual
-        vendaEx.setCliente(savedCliente);
+        // 1. Criar o DTO do item da venda
+        VendaProdutoForm itemForm = new VendaProdutoForm();
+        itemForm.setProdutoId(savedProduto.getCodproduto()); // Passa o ID do produto salvo
+        itemForm.setQuantidadev(1); // Vendendo 1 unidade
+        itemForm.setValorv(savedProduto.getValor()); // Passa o valor do produto
 
-        VendaProduto itemVenda = new VendaProduto();
-        
-        // CORREÇÃO FINAL: Busca o produto novamente para que ele esteja gerenciado pela sessão atual.
-        Produto produtoParaVenda = produtoService.findById(savedProduto.getCodproduto())
-                .orElseThrow(() -> new RuntimeException("Produto não encontrado para a venda!"));
-        itemVenda.setProduto(produtoParaVenda);
-        
-        itemVenda.setQuantv(1); // Vendendo 1 unidade
-        itemVenda.setValorv(produtoParaVenda.getValor()); // Preço do produto no momento da venda
-        
-        Set<VendaProduto> itens = new HashSet<>();
-        itens.add(itemVenda);
-        vendaEx.setProdutos(itens);
+        // 2. Criar a lista de DTOs de itens
+        List<VendaProdutoForm> itensForm = new ArrayList<>();
+        itensForm.add(itemForm);
 
-        vendaService.save(vendaEx);
+        // 3. Criar o DTO principal da Venda
+        VendaForm vendaForm = new VendaForm();
+        vendaForm.setClienteId(savedCliente.getCodcliente()); // Passa o ID do cliente salvo
+        vendaForm.setProdutos(itensForm);
+
+        // 4. Chamar o VendaService com o DTO (Form)
+        vendaService.save(vendaForm);
         
         System.out.println(">>> Dados iniciais inseridos com sucesso! <<<");
+        System.out.println(">>> Estoque do 'Smartphone Exemplo' deve ter sido atualizado para 49. <<<");
     }
 }
