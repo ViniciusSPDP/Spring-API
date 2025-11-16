@@ -1,0 +1,1417 @@
+{
+	"info": {
+		"_postman_id": "a8a0c2c0-9e8a-4e8a-9e8a-a8a0c2c09e8a",
+		"name": "Spring-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Bairro",
+			"item": [
+				{
+					"name": "Listar todos os bairros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/bairros",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bairros"
+							]
+						},
+						"description": "Retorna uma lista de todos os bairros cadastrados."
+					},
+					"response": []
+				},
+				{
+					"name": "Criar um novo bairro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bairros",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bairros"
+							]
+						},
+						"description": "Cria um novo bairro e o salva no banco de dados."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar um bairro",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/bairros/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bairros",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Remove um bairro do banco de dados pelo seu ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar um bairro",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bairros/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bairros",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza os dados de um bairro existente com base no seu ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar bairro por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/bairros/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bairros",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Retorna um bairro específico pelo seu ID."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CEP",
+			"item": [
+				{
+					"name": "Listar todos os CEPs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ceps",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ceps"
+							]
+						},
+						"description": "Retorna uma lista de todos os CEPs cadastrados."
+					},
+					"response": []
+				},
+				{
+					"name": "Criar um novo CEP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numero\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ceps",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ceps"
+							]
+						},
+						"description": "Cria um novo CEP e o salva no banco de dados."
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar um CEP",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ceps/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ceps",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Remove um CEP do banco de dados pelo seu ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar um CEP",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numero\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ceps/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ceps",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza os dados de um CEP existente com base no seu ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar CEP por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ceps/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ceps",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Retorna um CEP específico pelo seu ID."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cidade",
+			"item": [
+				{
+					"name": "Listar todas as cidades",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cidades",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cidades"
+							]
+						},
+						"description": "Retorna uma lista de todas as cidades cadastradas."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar cidade por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cidades/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cidades",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Retorna uma cidade específica pelo seu ID."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "Obter todos os clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clientes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clientes"
+							]
+						},
+						"description": "Retorna uma lista de todos os clientes cadastrados"
+					},
+					"response": []
+				},
+				{
+					"name": "Obter um cliente pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clientes/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clientes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Retorna um cliente específico pelo seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Cria um novo cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\",\n    \"cpf\": \"string\",\n    \"rg\": \"string\",\n    \"data_nascimento\": \"2025-11-16\",\n    \"sexo\": {\n        \"id\": 1\n    },\n    \"cep\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/clientes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clientes"
+							]
+						},
+						"description": "Cria um novo cliente e o salva no banco de dados"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza um cliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\",\n    \"cpf\": \"string\",\n    \"rg\": \"string\",\n    \"data_nascimento\": \"2025-11-16\",\n    \"sexo\": {\n        \"id\": 1\n    },\n    \"cep\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/clientes/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clientes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza os dados de um cliente existente com base no seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta um cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/clientes/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"clientes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Remove um cliente do banco de dados pelo seu ID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Exemplo",
+			"item": [
+				{
+					"name": "Exemplo de GET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/exemplo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"exemplo"
+							]
+						},
+						"description": "Retorna uma mensagem de boas-vindas"
+					},
+					"response": []
+				},
+				{
+					"name": "Exemplo de DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/exemplo/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"exemplo",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Retorna uma mensagem indicando qual ID seria deletado"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Marca",
+			"item": [
+				{
+					"name": "Obter todas as marcas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/marcas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"marcas"
+							]
+						},
+						"description": "Retorna uma lista de todas as marcas cadastradas"
+					},
+					"response": []
+				},
+				{
+					"name": "Cria uma nova marca",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/marcas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"marcas"
+							]
+						},
+						"description": "Cria uma nova marca e a salva no banco de dados"
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta uma marca",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/marcas/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"marcas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Remove uma marca do banco de dados pelo seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza uma marca",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/marcas/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"marcas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza os dados de uma marca existente com base no seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Obter uma marca pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/marcas/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"marcas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Retorna uma marca específica pelo seu ID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produto",
+			"item": [
+				{
+					"name": "Obter todos os produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/produtos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produtos"
+							]
+						},
+						"description": "Retorna uma lista de todos os produtos cadastrados"
+					},
+					"response": []
+				},
+				{
+					"name": "Obter um produto pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/produtos/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produtos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Retorna um produto específico pelo seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Cria um novo produto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\",\n    \"valor\": 0,\n    \"marca\": {\n        \"id\": 1\n    },\n    \"tipo\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/produtos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produtos"
+							]
+						},
+						"description": "Cria um novo produto e o salva no banco de dados"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza um produto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\",\n    \"valor\": 0,\n    \"marca\": {\n        \"id\": 1\n    },\n    \"tipo\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/produtos/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produtos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza os dados de um produto existente com base no seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta um produto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/produtos/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produtos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Remove um produto do banco de dados pelo seu ID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rua",
+			"item": [
+				{
+					"name": "Obter todas as ruas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ruas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ruas"
+							]
+						},
+						"description": "Retorna uma lista de todas as ruas cadastradas"
+					},
+					"response": []
+				},
+				{
+					"name": "Cria uma nova rua",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ruas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ruas"
+							]
+						},
+						"description": "Cria uma nova rua e a salva no banco de dados"
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta uma rua",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ruas/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ruas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Remove uma rua do banco de dados pelo seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza uma rua",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ruas/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ruas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza os dados de uma rua existente com base no seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Obter uma rua pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ruas/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ruas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Retorna uma rua específica pelo seu ID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sexo",
+			"item": [
+				{
+					"name": "Obter todos os sexos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sexos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sexos"
+							]
+						},
+						"description": "Retorna uma lista de todos os sexos cadastrados"
+					},
+					"response": []
+				},
+				{
+					"name": "Cria um novo sexo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sexos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sexos"
+							]
+						},
+						"description": "Cria um novo sexo e o salva no banco de dados"
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta um sexo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sexos/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sexos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Remove um sexo do banco de dados pelo seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza um sexo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sexos/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sexos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza os dados de um sexo existente com base no seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Obter um sexo pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sexos/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sexos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Retorna um sexo específico pelo seu ID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tipo de Produto",
+			"item": [
+				{
+					"name": "Obter todos os tipos de produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/tipos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tipos"
+							]
+						},
+						"description": "Retorna uma lista de todos os tipos de produtos cadastrados"
+					},
+					"response": []
+				},
+				{
+					"name": "Obter um tipo de produto pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/tipos/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tipos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Retorna um tipo de produto específico pelo seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Cria um novo tipo de produto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tipos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tipos"
+							]
+						},
+						"description": "Cria um novo tipo de produto e o salva no banco de dados"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza um tipo de produto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tipos/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tipos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza os dados de um tipo de produto existente com base no seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta um tipo de produto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/tipos/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tipos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Remove um tipo de produto do banco de dados pelo seu ID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Uf",
+			"item": [
+				{
+					"name": "Obter todas as UFs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ufs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ufs"
+							]
+						},
+						"description": "Retorna uma lista de todas as UFs cadastradas"
+					},
+					"response": []
+				},
+				{
+					"name": "Cria uma nova UF",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\",\n    \"sigla\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ufs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ufs"
+							]
+						},
+						"description": "Cria uma nova UF e a salva no banco de dados"
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta uma UF",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ufs/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ufs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Remove uma UF do banco de dados pelo seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza uma UF",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"string\",\n    \"sigla\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ufs/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ufs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza os dados de uma UF existente com base no seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Obter uma UF pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ufs/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ufs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Retorna uma UF específica pelo seu ID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Venda",
+			"item": [
+				{
+					"name": "Obter todas as vendas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vendas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vendas"
+							]
+						},
+						"description": "Retorna uma lista de todas as vendas cadastradas"
+					},
+					"response": []
+				},
+				{
+					"name": "Obter uma venda pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vendas/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vendas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Retorna uma venda específica pelo seu ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Cria uma nova venda",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clienteId\": 1,\n    \"produtos\": [\n        {\n            \"produtoId\": 1,\n            \"quantidade\": 1\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vendas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vendas"
+							]
+						},
+						"description": "Cria uma nova venda e a salva no banco de dados"
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta uma venda",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/vendas/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vendas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Remove uma venda do banco de dados pelo seu ID"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8081"
+		}
+	]
+}
