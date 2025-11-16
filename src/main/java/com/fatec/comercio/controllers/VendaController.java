@@ -18,20 +18,38 @@ import com.fatec.comercio.dto.VendaForm;
 import com.fatec.comercio.models.Venda;
 import com.fatec.comercio.service.VendaService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/vendas")
+@Tag(name = "Venda", description = "Endpoints para gerenciar vendas")
 public class VendaController {
 
     @Autowired
     private VendaService vendaService;
 
+    @Operation(summary = "Obter todas as vendas", description = "Retorna uma lista de todas as vendas cadastradas")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista de vendas retornada com sucesso"),
+            @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    })
     @GetMapping
     public ResponseEntity<List<Venda>> getAllVendas() {
         return ResponseEntity.ok(vendaService.findAll());
     }
 
+    @Operation(summary = "Obter uma venda pelo ID", description = "Retorna uma venda específica pelo seu ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Venda encontrada", content = @Content(schema = @Schema(implementation = Venda.class))),
+            @ApiResponse(responseCode = "404", description = "Venda não encontrada"),
+            @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Venda> getVendaById(@PathVariable Integer id) {
         return vendaService.findById(id)
@@ -39,6 +57,12 @@ public class VendaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Cria uma nova venda", description = "Cria uma nova venda e a salva no banco de dados")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Venda criada com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida"),
+            @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    })
     @PostMapping
     public ResponseEntity<Venda> createVenda(@Valid @RequestBody VendaForm vendaForm) {
         Venda novaVenda = vendaService.save(vendaForm);
@@ -51,6 +75,12 @@ public class VendaController {
         return ResponseEntity.created(location).body(novaVenda);
     }
 
+    @Operation(summary = "Deleta uma venda", description = "Remove uma venda do banco de dados pelo seu ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Venda apagada com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida"),
+            @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    })
     @DeleteMapping("/{id}")
     public String deleteVenda(@PathVariable Integer id) {
         vendaService.deleteById(id);
