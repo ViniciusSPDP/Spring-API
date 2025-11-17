@@ -4,8 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,5 +52,40 @@ public class CidadeController {
         return cidadeService.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
     
-    
+    @Operation(summary = "Criar uma nova cidade", description = "Cria uma nova cidade e a salva no banco de dados.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201", description = "Cidade criada com sucesso."),
+        @ApiResponse(responseCode = "400", description = "Requisição inválida."),
+        @ApiResponse(responseCode = "500", description = "Erro interno do servidor.")
+    })
+    @PostMapping
+    public String postCidade(@RequestBody Cidade cidade) {
+        cidadeService.save(cidade);
+        return "Cidade salva com sucesso!";
+    }
+
+    @Operation(summary = "Atualizar uma cidade", description = "Atualiza os dados de uma cidade existente com base no seu ID.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Cidade atualizada com sucesso."),
+        @ApiResponse(responseCode = "404", description = "Cidade não encontrada."),
+        @ApiResponse(responseCode = "400", description = "Requisição inválida."),
+        @ApiResponse(responseCode = "500", description = "Erro interno do servidor.")
+    })
+    @PutMapping("/{id}")
+    public String putCidade(@PathVariable Integer id, @RequestBody Cidade cidade) {
+        cidadeService.update(id, cidade);
+        return "Cidade com id " + id + " atualizada com sucesso!";
+    }
+
+    @Operation(summary = "Deletar uma cidade", description = "Remove uma cidade do banco de dados pelo seu ID.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Cidade deletada com sucesso."),
+        @ApiResponse(responseCode = "404", description = "Cidade não encontrada."),
+        @ApiResponse(responseCode = "500", description = "Erro interno do servidor.")
+    })
+    @DeleteMapping("/{id}")
+    public String deleteCidade(@PathVariable Integer id) {
+        cidadeService.deleteById(id);
+        return "Cidade com id " + id + " apagada com sucesso!";
+    }
 }
