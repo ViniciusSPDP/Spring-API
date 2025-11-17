@@ -1,41 +1,56 @@
 package com.fatec.comercio.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Venda {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer codvenda;
 
-    @Temporal(TemporalType.DATE)
-    private Date datavenda; 
+    private LocalDate datavenda;
 
     @ManyToOne
     @JoinColumn(name = "codclientefk")
     private Cliente cliente;
-    
+
     @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
     private Set<VendaProduto> produtos;
 
+    public Integer getCodvenda() {
+        return codvenda;
+    }
 
-    public Integer getCodvenda() { return codvenda; }
-    public void setCodvenda(Integer codvenda) { this.codvenda = codvenda; }
-    public Cliente getCliente() { return cliente; }
-    public void setCliente(Cliente cliente) { this.cliente = cliente; }
-    public Set<VendaProduto> getProdutos() { return produtos; }
-    public void setProdutos(Set<VendaProduto> produtos) { this.produtos = produtos; }
-    
-    public Date getDatavenda() {
+    public void setCodvenda(Integer codvenda) {
+        this.codvenda = codvenda;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Set<VendaProduto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(Set<VendaProduto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public LocalDate getDatavenda() {
         return datavenda;
     }
 
-    public void setDatavenda(Date datavenda) {
+    public void setDatavenda(LocalDate datavenda) {
         this.datavenda = datavenda;
     }
 }

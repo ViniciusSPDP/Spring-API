@@ -1,6 +1,6 @@
 package com.fatec.comercio.models;
 
-import java.util.Date; 
+import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -15,8 +15,7 @@ public class Cliente {
     private String nomecliente;
     private String cpf;
     
-    @Temporal(TemporalType.DATE) 
-    private Date datanasc;
+    private LocalDate datanasc;
 
     private String numerocasa;
 
@@ -60,11 +59,11 @@ public class Cliente {
     public Cep getCep() { return cep; }
     public void setCep(Cep cep) { this.cep = cep; }
 
-    public Date getDatanasc() {
+    public LocalDate getDatanasc() {
         return datanasc;
     }
 
-    public void setDatanasc(Date datanasc) {
+    public void setDatanasc(LocalDate datanasc) {
         this.datanasc = datanasc;
     }
 }

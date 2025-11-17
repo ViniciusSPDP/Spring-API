@@ -2,6 +2,7 @@ package com.fatec.comercio.controllers;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.fatec.comercio.models.Cliente;
@@ -52,9 +53,9 @@ public class ClienteController {
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     })
     @PostMapping
-    public String createCliente(@RequestBody Cliente cliente) {
-        clienteService.save(cliente);
-        return "Cliente salvo com sucesso!";
+    public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente) {
+        Cliente clienteSalvo = clienteService.save(cliente);
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
     }
 
     @Operation(summary = "Atualiza um cliente", description = "Atualiza os dados de um cliente existente com base no seu ID")
@@ -78,8 +79,8 @@ public class ClienteController {
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     })
     @DeleteMapping("/{id}")
-    public String deleteCliente(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteCliente(@PathVariable Integer id) {
         clienteService.deleteById(id);
-        return "Cliente com id " + id + " apagado com sucesso!";
+        return ResponseEntity.noContent().build();
     }
 }

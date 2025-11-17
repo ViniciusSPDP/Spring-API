@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import java.util.Date;
 // Set e HashSet não são mais necessários para a Venda
 // import java.util.HashSet;
 // import java.util.Set;
@@ -101,7 +100,6 @@ public class DataInitializer implements CommandLineRunner {
         Cliente clienteEx = new Cliente();
         clienteEx.setNomecliente("José da Silva");
         clienteEx.setCpf("12345678901");
-        clienteEx.setDatanasc(new Date()); // Data atual como exemplo
         clienteEx.setNumerocasa("500");
         clienteEx.setSexo(savedSexo);
         clienteEx.setBairro(savedBairro);

@@ -3,6 +3,7 @@ package com.fatec.comercio.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,9 +62,9 @@ public class ProdutoController {
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     })
     @PostMapping
-    public String createProduto(@RequestBody Produto produto) {
-        produtoService.save(produto);
-        return "Produto salvo com sucesso!";
+    public ResponseEntity<Produto> createProduto(@RequestBody Produto produto) {
+        Produto produtoSalvo = produtoService.save(produto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(produtoSalvo);
     }
 
     @Operation(summary = "Atualiza um produto", description = "Atualiza os dados de um produto existente com base no seu ID")
@@ -74,10 +75,10 @@ public class ProdutoController {
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     })
     @PutMapping("/{id}")
-    public String updateProduto(@PathVariable Integer id, @RequestBody Produto produtoDetails) {
+    public ResponseEntity<Produto> updateProduto(@PathVariable Integer id, @RequestBody Produto produtoDetails) {
         produtoDetails.setCodproduto(id);
-        produtoService.save(produtoDetails);
-        return "Produto com id " + id + " editado com sucesso!";
+        Produto produtoAtualizado = produtoService.save(produtoDetails);
+        return ResponseEntity.ok(produtoAtualizado);
     }
 
     @Operation(summary = "Deleta um produto", description = "Remove um produto do banco de dados pelo seu ID")
@@ -87,9 +88,9 @@ public class ProdutoController {
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     })
     @DeleteMapping("/{id}")
-    public String deleteProduto(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteProduto(@PathVariable Integer id) {
         produtoService.deleteById(id);
-        return "Produto com id " + id + " apagado com sucesso!";
+        return ResponseEntity.noContent().build();
     }
-    
+
 }

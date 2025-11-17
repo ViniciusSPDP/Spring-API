@@ -1,6 +1,6 @@
 package com.fatec.comercio.service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -44,18 +44,21 @@ public class VendaService {
     public Venda save(VendaForm vendaForm) {
 
         Cliente cliente = clienteRepository.findById(vendaForm.getClienteId())
-            .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado com ID: " + vendaForm.getClienteId()));
-        
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Cliente não encontrado com ID: " + vendaForm.getClienteId()));
+
         Venda venda = new Venda();
         venda.setCliente(cliente);
-        venda.setDatavenda(new Date());
+        venda.setDatavenda(LocalDate.now());
 
         Set<VendaProduto> itensDaVenda = vendaForm.getProdutos().stream().map(itemForm -> {
             Produto produto = produtoRepository.findById(itemForm.getProdutoId())
-                .orElseThrow(() -> new ResourceNotFoundException("Produto não encontrado com ID: " + itemForm.getProdutoId()));
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            "Produto não encontrado com ID: " + itemForm.getProdutoId()));
 
             if (produto.getQuantidade() < itemForm.getQuantidadev()) {
-                throw new IllegalArgumentException("Quantidade insuficiente em estoque para o produto ID: " + produto.getNomeproduto());
+                throw new IllegalArgumentException(
+                        "Quantidade insuficiente em estoque para o produto ID: " + produto.getNomeproduto());
             }
 
             produto.setQuantidade(produto.getQuantidade() - itemForm.getQuantidadev());
@@ -69,7 +72,56 @@ public class VendaService {
 
             return item;
         })
-        .collect(Collectors.toSet());
+                .collect(Collectors.toSet());
+        venda.setProdutos(itensDaVenda);
+        return vendaRepository.save(venda);
+    }
+
+    @Transactional
+    public Venda update(Integer id, VendaForm vendaForm) {
+        Venda venda = vendaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Venda não encontrada com ID: " + id));
+
+        // Restore stock from the original sale
+        venda.getProdutos().forEach(vp -> {
+            Produto produto = vp.getProduto();
+            produto.setQuantidade(produto.getQuantidade() + vp.getQuantv());
+            produtoRepository.save(produto);
+        });
+
+        // Clear the old sale items
+        venda.getProdutos().clear();
+
+        // Update client
+        Cliente cliente = clienteRepository.findById(vendaForm.getClienteId())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Cliente não encontrado com ID: " + vendaForm.getClienteId()));
+        venda.setCliente(cliente);
+
+        // Add new sale items
+        Set<VendaProduto> itensDaVenda = vendaForm.getProdutos().stream().map(itemForm -> {
+            Produto produto = produtoRepository.findById(itemForm.getProdutoId())
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            "Produto não encontrado com ID: " + itemForm.getProdutoId()));
+
+            if (produto.getQuantidade() < itemForm.getQuantidadev()) {
+                throw new IllegalArgumentException(
+                        "Quantidade insuficiente em estoque para o produto ID: " + produto.getNomeproduto());
+            }
+
+            produto.setQuantidade(produto.getQuantidade() - itemForm.getQuantidadev());
+            produtoRepository.save(produto);
+
+            VendaProduto item = new VendaProduto();
+            item.setVenda(venda);
+            item.setProduto(produto);
+            item.setQuantv(itemForm.getQuantidadev());
+            item.setValorv(itemForm.getValorv());
+
+            return item;
+        })
+                .collect(Collectors.toSet());
+
         venda.setProdutos(itensDaVenda);
         return vendaRepository.save(venda);
     }
